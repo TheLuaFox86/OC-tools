@@ -1,0 +1,10 @@
+local tape = require('component').tape_drive
+tape.stop()
+tape.seek(-tape.getPosition())
+local dat = tape.read(2500)
+dat = dat:gsub('\0+$', '')
+dat = dat:sub(1, #dat)
+local f = io.open('[Dump].lua', "w")
+f:write(dat)
+f:flush()
+f:close()
