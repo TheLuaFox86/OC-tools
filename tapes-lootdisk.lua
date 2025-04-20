@@ -1,5 +1,5 @@
 print("bash must be installed")
-loadfile("/bin/bash.lua", "t")([[
+loadfile("/bin/bash.lua", "t")('-c', [[
 wget https://raw.githubusercontent.com/TheLuaFox86/OC-tools/main/init.lua tapeloader-bios.lua -f
 mkdir bin
 wget https://raw.githubusercontent.com/TheLuaFox86/OC-tools/main/write.lua bin/tbWrite.lua -f
