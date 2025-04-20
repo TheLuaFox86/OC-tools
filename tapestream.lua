@@ -1,7 +1,8 @@
 local octoolsurl = "https://raw.githubusercontent.com/TheLuaFox86/OC-tools/main/"
 local mainlistrepo = "https://raw.githubusercontent.com/TheLuaFox86/oc-music-list/main/"
-local files = {'SHADOW'}
 local bash = loadfile("/bin/bash.lua", 't')
+bash("-c", "wget " .. mainlistrepo ..  "list.lua -f /lib/ts-list.lua")
+local files = require("ts-list")
 bash('-c', [[
 echo "Wellcome to opentapes"
 echo "creating shortcut..."
@@ -28,7 +29,6 @@ function split_quoted(str)
     end
     return result
 end
-cls()
 local go = true
 while go do
     local a = split_quoted(io.read("*Line"))
