@@ -14,10 +14,7 @@ f:flush()
 f:close()
 print("just type 'ts' to start tapestream\n dont worry tapestream is online")
 local function playSong(url, name)
-    bash("-c", 'wget ' .. url .. "/" .. name .. '.dfwpm -f .. '.. "/tmp/song.dfpwm \n tape write /song.dfpwm -y
-    echo "use tape drive to stop"
-    tape play
-    ]])
+    bash("-c", 'wget ' .. url .. "/" .. name .. '.dfwpm -f .. '.. "/tmp/song.dfpwm \n tape write /song.dfpwm -y \n tape play")
 end
 function cls()
     bash('-c', [[
