@@ -8,13 +8,13 @@ echo "creating shortcut..."
 ]])
 f = io.open('/bin/ts.lua', "w")
 f:write([[
-    loadfile('/bin/bash.lua', 't')("-c", 'wget ' .. octoolsurl .. '/tapestream.lua && "/home/tapestream.lua" && rm /home/tapestream.lua')
+loadfile('/bin/bash.lua', 't')("-c", 'wget ' .. octoolsurl .. '/tapestream.lua && "/home/tapestream.lua" && rm /home/tapestream.lua')
 ]])
 f:flush()
 f:close()
 print("just type 'ts' to start tapestream\n dont worry tapestream is online")
 local function playSong(url, name)
-    bash("-c", 'wget ' .. url .. "/" .. name .. '.dfwpm -f .. '.. "/tmp/song.dfpwm \n tape write /song.dfpwm -y \n tape play")
+    bash("-c", 'wget ' .. url .. "/" .. name .. '.dfpwm -f ' .. "/tmp/song.dfpwm \n tape write /song.dfpwm -y \n tape play")
 end
 function cls()
     bash('-c', [[
