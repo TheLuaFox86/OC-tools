@@ -1,24 +1,23 @@
 local octoolsurl = "https://raw.githubusercontent.com/TheLuaFox86/OC-tools/main/"
 local mainlistrepo = "https://raw.githubusercontent.com/TheLuaFox86/oc-music-list/main/"
 local files = {'SHADOW'}
-local bash = loadfile("/bin/bash.lua", '=bashcmd')
+local bash = loadfile("/bin/bash.lua", 't')
 bash('-c', [[
 echo "Wellcome to opentapes"
 echo "creating shortcut..."
 ]])
 f = io.open('/bin/ts.lua', "w")
 f:write([[
-    loadfile('/bin/bash.lua', '=bashCmd')("-c", 'wget ' .. octoolsurl .. '/tapestream.lua && "/home/tapestream.lua" && rm /home/tapestream.lua')
+    loadfile('/bin/bash.lua', 't')("-c", 'wget ' .. octoolsurl .. '/tapestream.lua && "/home/tapestream.lua" && rm /home/tapestream.lua')
 ]])
 f:flush()
 f:close()
 print("just type 'ts' to start tapestream\n dont worry tapestream is online")
 local function playSong(url, name)
-    bash("-c", 'wget ' .. url .. "/" .. name .. '.dfwpm'.. "/tmp/song.dfpwm -f" .. [[
-    tape write /tmp/song.dfpwm "TapeStream: " .. name
+    bash("-c", 'wget ' .. url .. "/" .. name .. '.dfwpm -f .. '.. "/tmp/song.dfpwm \n tape write /song.dfpwm -y
     echo "use tape drive to stop"
     tape play
-    ]]
+    ]])
 end
 function cls()
     bash('-c', [[
@@ -27,10 +26,7 @@ cls
 end
 function split_quoted(str)
     local result = {}
-    for word in str:gmatch('%b""|[^%s]+') do
-        if word:sub(1, 1) == '"' and word:sub(-1) == '"' then
-            word = word:sub(2, -2) -- remove surrounding quotes
-        end
+    for word in str:gmatch('%S+') do
         table.insert(result, word)
     end
     return result
@@ -46,7 +42,7 @@ while go do
     a = b
     if a[1] == "list" then
         for i, v in ipairs(files) do
-            print(v)
+            print(i, v)
         end
     elseif a[1] == 'play' then
         local b = a[2]
