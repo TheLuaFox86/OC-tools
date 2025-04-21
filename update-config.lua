@@ -1,0 +1,3 @@
+return "https://raw.githubusercontent.com/TheLuaFox86/OC-tools/refs/heads/main/", {
+    "wget $UURL/bash.lua /bin/bash.lua"
+}
