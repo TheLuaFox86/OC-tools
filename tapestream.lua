@@ -4,7 +4,7 @@ local bash = loadfile("/bin/bash.lua", 't')
 bash("-c", "wget " .. mainlistrepo ..  "list.lua -f /lib/ts-list.lua")
 local files = require("ts-list")
 bash('-c', [[
-echo "Wellcome to opentapes"
+echo "Wellcome to tapestream"
 echo "creating shortcut..."
 ]])
 f = io.open('/bin/ts.lua', "w")
@@ -13,7 +13,7 @@ f:flush()
 f:close()
 print("just type 'ts' to start tapestream\n dont worry tapestream is online")
 local function playSong(url, name)
-    bash("-c", 'rm /tmp/song.dfpwm\nwget ' .. url .. "/" .. name .. '.dfpwm -f ' .. "/tmp/song.dfpwm \n tape write /song.dfpwm -y \n tape play")
+    bash("-c", 'rm /tmp/song.dfpwm\nwget ' .. url .. "/" .. name .. '.dfpwm -f ' .. "/tmp/song.dfpwm \n tape write /tmp/song.dfpwm -y \n tape play")
 end
 function cls()
     bash('-c', [[
