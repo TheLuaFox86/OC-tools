@@ -8,7 +8,7 @@ echo "Wellcome to tapestream"
 echo "creating shortcut..."
 ]])
 f = io.open('/bin/ts.lua', "w")
-f:write("loadfile('/bin/bash.lua', 't')(" .. '"-c", ' .. '"' .. "wget " .. octoolsurl .. "/tapestream.lua && " .. "'/home/tapestream.lua'" .. ' && rm /home/tapestream.lua")')
+f:write("loadfile('/bin/bash.lua', 't')(" .. '"-c", ' .. '"' .. "wget " .. octoolsurl .. "/tapestream.lua -f && " .. "'/home/tapestream.lua'" .. ' && rm /home/tapestream.lua")')
 f:flush()
 f:close()
 print("just type 'ts' to start tapestream\n dont worry tapestream is online")
