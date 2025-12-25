@@ -1,19 +1,9 @@
 local octoolsurl = "https://raw.githubusercontent.com/TheLuaFox86/OC-tools/main/"
-local mainlistrepo = "https://raw.githubusercontent.com/TheLuaFox86/oc-music-list/main/"
-local bash = loadfile("/bin/bash.lua", 't')
-bash("-c", "wget " .. mainlistrepo ..  "list.lua -f /lib/ts-list.lua")
+local mainlistrepo = "https://github.com/TheLuaFox86/oc-music-list/raw/refs/heads/main/"
+local bash = loadfile("/usr/bin/bash.lua", 't')
 local files = require("ts-list")
-bash('-c', [[
-echo "Wellcome to tapestream"
-echo "creating shortcut..."
-]])
-f = io.open('/bin/ts.lua', "w")
-f:write("loadfile('/bin/bash.lua', 't')(" .. '"-c", ' .. '"' .. "wget " .. octoolsurl .. "/tapestream.lua -f && " .. "'/home/tapestream.lua'" .. ' && rm /home/tapestream.lua")')
-f:flush()
-f:close()
-print("just type 'ts' to start tapestream\n dont worry tapestream is online")
-local function playSong(url, name)
-    bash("-c", 'rm /tmp/song.dfpwm\nwget ' .. url .. "/" .. name .. '.dfpwm -f ' .. "/tmp/song.dfpwm \n tape write /tmp/song.dfpwm -y \n tape play")
+local function playSong(url, tb)
+    bash("-c", 'rm /tmp/song.dfpwm\nwget ' .. url .. "/" .. tb.path .. '-f ' .. "/tmp/song.dfpwm \n tape write /tmp/song.dfpwm -y \n tape label " .. string.format("%q", "TapeStrean: " .. tb.name .. "(by " .. tb.author s.. ")\ntape play"))
 end
 function cls()
     bash('-c', [[
@@ -36,8 +26,12 @@ while go do
     end
     a = b
     if a[1] == "list" then
-        for i, v in ipairs(files) do
-            print(i, v)
+        if a[2] == "-update" then
+            bash("-c", "echo \"Updating List\"\nwget " .. mainlistrepo ..  "list.lua -f /lib/ts-list.lua")
+        else
+            for i, v in ipairs(files) do
+                print(i, v.name .. " By " .. v.author)
+            end
         end
     elseif a[1] == 'play' then
         local b = a[2]
@@ -51,11 +45,17 @@ while go do
         playSong(mainlistrepo, b)
     elseif a[1] == "exit" then
         go = false
+    elseif a[1] == "pause" then
+        bash("-c", "tape stop")
+    elseif a[1] == "reaume" then
+        bash("-c", "tape play")
     else
         print([[
             --Commands--
-            list: Lists all available songd
+            list: Lists all available songs (if you want to update the list add -upgrade next to list)
             play: play a song usage: play <song: number or string>
+            pause: pauses the tape
+            resume: resumes the tape
             exit: exit out of TapeStream
         ]])
     end
