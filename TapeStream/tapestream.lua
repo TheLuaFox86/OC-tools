@@ -3,7 +3,7 @@ local mainlistrepo = "https://github.com/TheLuaFox86/oc-music-list/raw/refs/head
 local bash = loadfile("/usr/bin/bash.lua", 't')
 local files = require("ts-list")
 local function playSong(url, tb)
-    bash("-c", 'rm song.dfpwm\nwget ' .. url .. tb.path .. ' -f ' .. "song.dfpwm \n tape write song.dfpwm -y \n tape label " .. string.format("%q", "TapeStrean: " .. tb.name .. "(by " .. tb.author .. ")\ntape play"))
+    bash("-c", 'rm song.dfpwm\nwget ' .. url .. tb.path .. ' -f ' .. "song.dfpwm \n tape write song.dfpwm -y \n tape label " .. string.format("%q", "TapeStrean: " .. tb.name .. " (by " .. tb.author .. ")") .. "\ntape play"))
 end
 function cls()
     bash('-c', [[
