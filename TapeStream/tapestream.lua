@@ -47,7 +47,7 @@ while go do
         go = false
     elseif a[1] == "pause" then
         bash("-c", "tape stop")
-    elseif a[1] == "reaume" then
+    elseif a[1] == "resume" then
         bash("-c", "tape play")
     else
         print([[
