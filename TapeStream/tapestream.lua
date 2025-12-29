@@ -17,10 +17,9 @@ function split_quoted(str)
     end
     return result
 end
-local go = true
-while go do
-    local a = split_quoted(io.read("*Line"))
-    local b = {}
+local function cmds(_a)
+  a = _a
+  local b = {}
     for i,v in ipairs(a) do
         b[i]=v
     end
@@ -59,4 +58,13 @@ while go do
             exit: exit out of TapeStream
         ]])
     end
+end
+if #({...}) > 0 then
+  cmds({...})
+else
+  local go = true
+  while go do
+    local a = split_quoted(io   .read("*Line"))
+    cmds(a)
+  end
 end
