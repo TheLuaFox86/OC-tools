@@ -27,7 +27,7 @@ while go do
     a = b
     if a[1] == "list" then
         if a[2] == "-update" then
-            bash("-c", "echo \"Updating List\"\nwget " .. mainlistrepo ..  "list.lua -f /lib/ts-list.lua")
+            bash("-c", "echo \"Updating List\"\nwget " .. mainlistrepo ..  "list.lua -f /usr/lib/ts-list.lua")
         else
             for i, v in ipairs(files) do
                 print(i, v.name .. " By " .. v.author)
